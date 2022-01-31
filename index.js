@@ -23,6 +23,31 @@ const newspapers = [
         name: 'telegraph',
         address: 'https://www.telegraph.co.uk/climate-change',
         base: 'https://www.telegraph.co.uk',
+    },
+    {
+        name: 'nyt',
+        address: 'https://www.nytimes.com/international/section/climate',
+        base: '',
+    },
+    {
+        name: 'latimes',
+        address: 'https://www.latimes.com/environment',
+        base: '',
+    },
+    {
+        name: 'bbc',
+        address: 'https://www.bbc.co.uk/news/science_and_environment',
+        base: 'https://www.bbc.co.uk',
+    },
+    {
+        name: 'es',
+        address: 'https://www.standard.co.uk/topic/climate-change',
+        base: 'https://www.standard.co.uk'
+    },
+    {
+        name: 'nyp',
+        address: 'https://nypost.com/tag/climate-change/',
+        base: ''
     }
 ]
 

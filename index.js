@@ -5,50 +5,106 @@ const cheerio = require('cheerio')
 const app = express()
 const newspapers = [
     {
-        name: 'cityam',
-        address: 'https://www.cityam.com/london-must-become-a-world-leader-on-climate-change-action/',
+        name: 'greenpeace',
+        address: 'https://greenpeace.ru/projects/izmenenie-klimata/',
         base: ''
-    },
-    {
-        name: 'thetimes',
-        address: 'https://www.thetimes.co.uk/environment/climate-change',
-        base: ''
-    },
-    {
-        name: 'guardian',
-        address: 'https://www.theguardian.com/environment/climate-crisis',
-        base: '',
-    },
-    {
-        name: 'telegraph',
-        address: 'https://www.telegraph.co.uk/climate-change',
-        base: 'https://www.telegraph.co.uk',
-    },
-    {
-        name: 'nyt',
-        address: 'https://www.nytimes.com/international/section/climate',
-        base: '',
-    },
-    {
-        name: 'latimes',
-        address: 'https://www.latimes.com/environment',
-        base: '',
     },
     {
         name: 'bbc',
-        address: 'https://www.bbc.co.uk/news/science_and_environment',
-        base: 'https://www.bbc.co.uk',
+        address: 'https://www.bbc.com/russian/features-59325328',
+        base: 'https://www.bbc.com'
     },
     {
-        name: 'es',
-        address: 'https://www.standard.co.uk/topic/climate-change',
-        base: 'https://www.standard.co.uk'
-    },
-    {
-        name: 'nyp',
-        address: 'https://nypost.com/tag/climate-change/',
+        name: 'who',
+        address: 'https://www.who.int/ru/news-room/fact-sheets/detail/climate-change-and-health',
         base: ''
+    },
+    {
+        name: 'amnesty',
+        address: 'https://eurasia.amnesty.org/chto-my-delaem/izmenenie-klimata/',
+        base: 'https://eurasia.amnesty.org'
+    },
+    {
+        name: 'fao',
+        address: 'https://www.fao.org/3/cb4769ru/online/src/html/effects-climate-change-on-agriculture-forestry-and-ecosystems.html',
+        base: 'https://www.fao.org'
+    },
+    {
+        name: 'tass',
+        address: 'https://tass.ru/spec/climate',
+        base: 'https://tass.ru'
+    },
+    {
+        name: 'unep',
+        address: 'https://www.unep.org/ru/regions/evropa/regionalnye-iniciativy/reagirovanie-na-izmenenie-klimata',
+        base: 'https://www.unep.org'
+    },
+    {
+        name: 'unesco',
+        address: 'https://ru.unesco.org/themes/izmenenie-klimata',
+        base: ''
+    },
+    {
+        name: 'wipo',
+        address: 'https://www.wipo.int/policy/ru/climate_change/',
+        base: 'https://www.wipo.int'
+    },
+    {
+        name: 'rbc',
+        address: 'https://www.rbc.ru/tags/?tag=%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BB%D0%B8%D0%BC%D0%B0%D1%82%D0%B0',
+        base: 'https://www.rbc.ru'
+    },
+    {
+        name: 'osce',
+        address: 'https://www.osce.org/ru/proekty/izmenenie-klimata-i-bezopasnost',
+        base: 'https://www.osce.org'
+    },
+    {
+        name: 'socionauki',
+        address: 'https://www.socionauki.ru/journal/articles/129826/',
+        base: 'https://www.socionauki.ru'
+    },
+    {
+        name: 'nornickel',
+        address: 'https://www.nornickel.ru/sustainability/climate-change/strategy/',
+        base: 'https://www.nornickel.ru'
+    },
+    {
+        name: 'meteorf',
+        address: 'http://www.meteorf.ru/about/smi/503/',
+        base: ''
+    },
+    {
+        name: 'roscongress',
+        address: 'https://roscongress.org/knowledge/izmenenie-klimata/materials/',
+        base: 'https://roscongress.org'
+    },
+    {
+        name: 'iso',
+        address: 'https://www.iso.org/ru/sdg/SDG13.html',
+        base: 'https://www.iso.org'
+    },
+    {
+        name: 'asi',
+        address: 'https://www.asi.org.ru/news/2020/07/20/v-seti-startoval-klimaticheskij-fleshmob-izmenenie-klimata-chto-delat/',
+        base: 'https://www.asi.org.ru'
+    },
+    {
+        name: 'wfp',
+        address: 'https://ru.wfp.org/climate-action',
+        base: ''
+    },
+    {
+        name: 'ipcc',
+        address: 'https://www.ipcc.ch/languages-2/russian/',
+        base: ''
+    },
+    {
+        name: 'dw',
+        address: 'https://www.dw.com/ru/cop26-klimaticheskij-krizis-v-11-grafikah/a-59721345',
+        base: 'https://www.dw.com'
     }
+    
 ]
 
 
@@ -58,7 +114,7 @@ newspapers.forEach(newspaper => {
             const html = res.data
             const $ = cheerio.load(html)
 
-            $('a:contains("climate")', html).each(function () {
+            $('a:contains("климата")', html).each(function () {
                 const title = $(this).text()
                 const url = $(this).attr('href')
 
@@ -76,7 +132,7 @@ newspapers.forEach(newspaper => {
 
 const articles = []
 app.get('/', (req, res) => {
-    res.json('Welcome to my Climate Change News API')
+    res.json('Добро пожаловать на мой API по изменению климата!')
 })
 
 app.get('/news', (req,res) => {
@@ -98,7 +154,7 @@ app.get('/news/:newspaperId', (req, res) => {
             const $ = cheerio.load(html)
             const specificArticles = []
 
-            $('a:contains("climate")', html).each(function () {
+            $('a:contains("климата")', html).each(function () {
                 const title = $(this).text()
                 const url = $(this).attr('href')
                 specificArticles.push({

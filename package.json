@@ -1,16 +1,25 @@
 {
   "name": "climate-change-live-api-main",
   "version": "1.0.0",
+  "engines": {
+    "node": "12.11.1"
+  },
   "description": "A Demo to show how to build your own API and host in on RapidAPI",
   "main": "index.js",
   "scripts": {
-    "start" : "nodemon index.js"
+    "start": "nodemon index.js",
+    "dev": "nodemon src/index.js"
   },
+  
   "author": "Aigerim Madakimova",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.25.0",
     "cheerio": "^1.0.0-rc.10",
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "serve": "^13.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }

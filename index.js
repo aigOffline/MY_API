@@ -1,4 +1,4 @@
-const PORT = process.env.PORT || 8000
+const PORT = process.env.PORT || 8000 || config.httpPort;
 const express = require('express')
 const axios = require('axios')
 const cheerio = require('cheerio')
@@ -58,11 +58,6 @@ const newspapers = [
         name: 'osce',
         address: 'https://www.osce.org/ru/proekty/izmenenie-klimata-i-bezopasnost',
         base: 'https://www.osce.org'
-    },
-    {
-        name: 'socionauki',
-        address: 'https://www.socionauki.ru/journal/articles/129826/',
-        base: 'https://www.socionauki.ru'
     },
     {
         name: 'nornickel',
@@ -168,4 +163,5 @@ app.get('/news/:newspaperId', (req, res) => {
 })
 
 
-app.listen(PORT, () => console.log(`server running on PORT ${PORT}`))
+
+app.listen(PORT, () => console.log(`Server Running on Port: ${PORT}`));

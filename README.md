@@ -1,6 +1,6 @@
 # MY_API
 
-My first official API about climate change, after searching climate change API in the Russian language I couldn’t find anything, so I decided to implement my own.
+My first official API about climate change, after searching climate change API in the Russian language, I couldn’t find anything, so I decided to implement my own.
 
 I published in https://rapidapi.com/provider/6022783/apis/climate-change76/analytics
 
